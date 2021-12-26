@@ -1,9 +1,7 @@
 package ca.blutopia.removehud;
 
-import ca.blutopia.removehud.gui.ModMenuIntegration;
-import com.terraformersmc.modmenu.api.ModMenuApi;
 import me.shedaniel.autoconfig.AutoConfig;
-import me.shedaniel.clothconfig2.api.ConfigBuilder;
+
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
@@ -11,7 +9,7 @@ import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.option.KeyBinding;
 import net.minecraft.client.util.InputUtil;
-import net.minecraft.text.TranslatableText;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.lwjgl.glfw.GLFW;
@@ -55,12 +53,9 @@ public class RemoveHud implements ClientModInitializer {
 		ClientTickEvents.END_CLIENT_TICK.register(client -> {
 			while (keynmap2.wasPressed()) {
 				Screen settings = AutoConfig.getConfigScreen(ModConfig.class, null).get();
-				MinecraftClient.getInstance().setScreen(settings);
+				MinecraftClient.getInstance().openScreen(settings);
 			}
 		});
-
-		ConfigBuilder builder = ConfigBuilder.create()
-				.setTitle(new TranslatableText("Remove Hud But Not Hand Config"));
 
 
 	}
