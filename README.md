@@ -15,5 +15,5 @@
 
 ## Dependencies
 You need these mods in order for this one to work
-- [Mod Menu](https://www.curseforge.com/minecraft/mc-mods/modmenu)
-- [Cloth Config](https://www.curseforge.com/minecraft/mc-mods/cloth-config)
+- [Mod Menu](https://www.curseforge.com/minecraft/mc-mods/modmenu) (1.16.22)
+- [Cloth Config](https://www.curseforge.com/minecraft/mc-mods/cloth-config) (4.13.49)
