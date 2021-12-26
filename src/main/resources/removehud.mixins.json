@@ -4,7 +4,6 @@
   "package": "ca.blutopia.removehud.mixin",
   "compatibilityLevel": "JAVA_16",
   "mixins": [
-
   ],
   "client": [
     "RemoveHandButNotHud",
