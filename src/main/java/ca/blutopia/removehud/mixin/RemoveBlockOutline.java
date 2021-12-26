@@ -14,7 +14,7 @@ public abstract class RemoveBlockOutline {
     @Inject(at=@At("TAIL"), method = "shouldRenderBlockOutline", cancellable = true)
     public void renderOutline(CallbackInfoReturnable<Boolean> cir) {
         if (!ModConfig.INSTANCE.highlightBlocks) {
-           cir.setReturnValue(false);
+            cir.setReturnValue(false);
         } else {
             cir.setReturnValue(true);
         }

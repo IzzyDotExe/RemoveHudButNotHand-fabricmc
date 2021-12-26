@@ -1,7 +1,6 @@
 package ca.blutopia.removehud;
 
 import me.shedaniel.autoconfig.AutoConfig;
-
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
@@ -9,11 +8,9 @@ import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.option.KeyBinding;
 import net.minecraft.client.util.InputUtil;
-
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.lwjgl.glfw.GLFW;
-
 
 public class RemoveHud implements ClientModInitializer {
 	// This logger is used to write text to the console and the log file.
@@ -40,25 +37,22 @@ public class RemoveHud implements ClientModInitializer {
 		KeyBindingHelper.registerKeyBinding(keynmap);
 		KeyBindingHelper.registerKeyBinding(keynmap2);
 
-		ClientTickEvents.END_CLIENT_TICK.register(client -> {
-			while (keynmap.wasPressed()) {
-				if (ModConfig.INSTANCE.toggleMod) {
-					ModConfig.INSTANCE.toggleMod = false;
-				} else {
-					ModConfig.INSTANCE.toggleMod = true;
-				}
-			}
-		});
+		ClientTickEvents.END_CLIENT_TICK.register(this::removeHudToggleListener);
 
-		ClientTickEvents.END_CLIENT_TICK.register(client -> {
-			while (keynmap2.wasPressed()) {
-				Screen settings = AutoConfig.getConfigScreen(ModConfig.class, null).get();
-				MinecraftClient.getInstance().openScreen(settings);
-			}
-		});
-
+		ClientTickEvents.END_CLIENT_TICK.register(this::settingsMenuListener);
 
 	}
 
+	private void settingsMenuListener(MinecraftClient client) {
+		while (keynmap2.wasPressed()) {
+			Screen settings = AutoConfig.getConfigScreen(ModConfig.class, null).get();
+			client.openScreen(settings);
+		}
+	}
+	private void removeHudToggleListener(MinecraftClient client) {
+		while (keynmap.wasPressed()) {
+			ModConfig.INSTANCE.removeHud = !ModConfig.INSTANCE.removeHud;
+		}
+	}
 
 }
